@@ -1,0 +1,108 @@
+#Navigation
+
+Command: man command
+Function: Manual page for selected command
+Example:
+root@ubuntu:~$ man
+What manual page do you want?
+For example, try 'man man'.
+root@ubuntu:~$ man ls
+
+Command: pwd
+Function: Print working directory
+Example:
+root@ubuntu:~$ pwd
+/root
+
+Command: ls
+Function: List contents in current directory
+Example:
+root@ubuntu:~$ ls
+filesystem
+
+Command: ls -a
+Function: List ALL contents in current directory including hidden files
+Example:
+root@ubuntu :~ $ ls -a
+etc
+home
+lib
+lib.usr-is-merged
+1ib64
+lost+found
+
+Command: ls -l
+Function: List contents in current directory including permissions, group and user of content.
+Example:
+root@ubuntu:~$ ls -l
+-rw-r--r--1 root root 510 Oct 5 21:14 multiline.txt
+drwxr-xr-x 2 root root 4096 Oct 5 21:20 my_directory_copy
+drwxr-xr-x 2 root root 4096 Oct 5 21:30 project
+
+Command: ls -R
+Function: List recurring/ nested content in directories
+Example:
+root@ubuntu:~$ mkdir -p project/src/components
+root@ubuntu:~$ ls -R project
+project:
+src
+project/src:
+components
+project/src/components:
+
+Command: lsof
+Function: List of open files including process ID's and more.
+Example:
+admin@ip-10-1-13-82:~$ lsof /var/log/bad.log
+COMMAND   PID USER  FD TYPE DEVICE SIZE/OFF NODE NAME
+badlog-py 593 admin 3w REG 259,1 17445 265802 /var/log/bad.log
+
+Command: cd
+Function: To change to a specific directory
+Example:
+root@ubuntu:~$ cd filesystem
+root@ubuntu:~/filesystem$ mkdir hello
+
+Command: cd ..
+Function: To return to previous directory
+Example:
+root@ubuntu:~/filesystem$ cd ..
+root@ubuntu:~$
+
+Command: cd /
+Function: To enter root directory
+Example:
+root@ubuntu:/$ cd /
+root@ubuntu:/$ pwd
+/
+
+Command: history
+Function: To final all commands used in current terminal, use !NUMBER to use a previous command.
+Example:
+root@ubuntu:/$ history
+1 history
+2 ls
+3 ls -l
+4 cat filesystem
+5 cd /home
+6 cd ..
+7 history
+root@ubuntu:/$ !5
+cd /home
+
+Command: alias
+Function: To create short cut commands.
+Example:
+root@ubuntu:~$ alias
+alias egrep='egrep -- color=auto'
+alias fgrep='fgrep -- color=auto'
+alias grep='grep -- color=auto'
+alias l='ls -CF'
+alias la='ls -A'
+alias ll='ls -alF'
+alias ls='ls -- color=auto'
+root@ubuntu:~$ l
+filesystem@ greet.sh*
+root@ubuntu:~$ alias hello='echo "Hello World"'
+root@ubuntu:~$ hello
+Hello World
