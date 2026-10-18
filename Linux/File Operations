@@ -1,1 +1,247 @@
+#File Operations
 
+Command: mkdir
+Function: To make new directory
+Example:
+root@ubuntu:~$ mkdir project
+root@ubuntu:~$ ls
+filesystem multiline.txt my_directory_copy project
+
+Command: mkdir -p NAME/NAME/NAME
+Function: To make nested directories
+Example:
+root@ubuntu:~$ mkdir -p project/src/components
+root@ubuntu:~$ ls -R project
+project:
+src
+project/src:
+components
+project/src/components:
+
+Command: rmdir
+Function: To remove directory/ies
+Example:
+root@ubuntu:~$ rmdir project/src/components/
+root@ubuntu:~$ rm -r project/
+root@ubuntu:~$ ls
+filesystem multiline.txt my directory_copy
+
+Command: mkdir "SPACES IN NAMES"
+Function: To make new directory whilst dealing with spaces
+Example:
+root@ubuntu:~$ mkdir My Project
+root@ubuntu:~$ ls
+My Project filesystem multiline.txt
+root@ubuntu:~$ rm -r My Project/
+root@ubuntu:~$ ls
+filesystem multiline.txt my_directory_copy
+root@ubuntu:~$ mkdir "My Project"
+root@ubuntu:~$ ls
+'My Project' filesystem multiline.txt
+ALTERNATIVELY
+root@ubuntu:~$ mkdir My\ Project\ 2
+root@ubuntu:~$ ls
+'My Project' filesystem multiline.txt 'My Project 2'
+
+Command: touch
+Function: To add files
+Example:
+root@ubuntu:~/filesystem$ touch hello.txt
+root@ubuntu:~/filesystem$ ls
+bin
+bin.usr-is-merged
+boot
+dev
+etc
+hello.txt
+
+Command: rm file.txt
+Function: To remove files
+Example:
+root@ubuntu:~/filesystem$ rm hello.txt
+root@ubuntu:~/filesystem$ ls
+bin
+bin.usr-is-merged
+boot
+dev
+etc
+
+Command: cp
+Function: To copy files
+Example:
+root@ubuntu:~$ cp myfile.txt myfile_copy.txt
+root@ubuntu:~$ ls
+filesystem myfile.txt myfile_copy.txt
+
+Command: cp -r
+Function: To copy directories
+Example:
+root@ubuntu:~$ cp -r my_directory my_directory_copy
+root@ubuntu:~$ ls
+filesystem my_directory my_directory_copy myfile.txt myfile_copy.txt
+
+Command: mv
+Function: To rename or move files to directories
+Example:
+root@ubuntu:~$ mv myfile-copy.txt myfile-copy-backup.txt
+root@ubuntu:~$ 1s
+directory directory-copy filesystem myfile-copy-backup.txt myfile.txt
+root@ubuntu:~$ mv myfile-copy-backup.txt directory
+root@ubuntu:~$ 1s directory
+myfile-copy-backup.txt
+
+
+Command: sudo mkdir
+Function: Superuser do to by pass permissions and make a new directory
+Example:
+root@ubuntu:/$ sudo mkdir .linux
+root@ubuntu:/$ ls -a
+.
+..
+.Linux
+
+Command: sudo !!
+Function: Superuser do to run previous command
+Example:
+root@ubuntu:/$ sudo !!
+sudo mkdir .Linux
+
+Command: sudo su
+Function: Superuser do to switch to root user
+Example:
+root@ubuntu:/$ sudo su
+root@ubuntu:/$ whoami
+root
+
+Command: rm -rf
+Function: DANGEROUS command to remove all files in root directory.
+
+
+Command: sudo useradd & sudo passwd
+Function: Superuser do to create new user & also to create a password
+Example:
+root@ubuntu:~$ sudo useradd newuser
+root@ubuntu:~$ sudo passwd newuser
+New password:
+Retype new password:
+passwd: password updated successfully
+
+Command: su - USERNAME
+Function: switching to another user
+Example:
+root@ubuntu:~$ su - newuser
+su: warning: cannot change directory to /home/newuser: No such file or directory
+$ sudo apt-get udate
+[sudo] password for newuser:
+
+Command: sudo usermod -aG sudo newuser
+Function: Superuser do to give newuser sudo privileges.
+Example:
+root@ubuntu:~$ sudo usermod -aG sudo newuser
+root@ubuntu:~$ su - newuser
+su: warning: cannot change directory to /home/newuser: No such file or directory
+$ sudo apt-get udate
+[sudo] password for newuser:
+
+Command: sudo deluser newuser sudo
+Function: Superuser do to remove newuser sudo privileges.
+Example:
+root@ubuntu:~$ sudo deluser newuser sudo
+info: Removing user 'newuser' from group *sudo'
+root@ubuntu:~$ su - newuser
+su: warning: cannot change directory to /home/newuser: No such file or directory
+$ sudo ls /root
+newuser is not in the sudoers file.
+
+Command: sudo groupadd & sudo groupdel
+Function: Superuser do to create new group & also to delete a group
+Example:
+root@ubuntu:~$ sudo groupadd devops
+root@ubuntu:~$ grep devops /etc/groups
+devops
+&
+root@ubuntu:~$ sudo groupdel devops
+root@ubuntu:~$ grep devops /etc/groups
+grep: /etc/groups: No such file or directory
+
+Command: sudo usermod -aG GROUP USER
+Function: Superuser do to add user to a group
+Example:
+root@ubuntu:~$ sudo usermod -aG devops newuser
+root@ubuntu:~$ su - newuser
+su: warning: cannot change directory to /home/newuser: No such file or directory
+$ groups
+newuser devops
+
+Command: sudo usermod -aG GROUP,GROUP USER
+Function: Superuser do to add user to multiple groups
+Example:
+root@ubuntu:~$ sudo usermod -aG admin,admin2 newuser
+root@ubuntu:~$ su - newuser
+su: warning: cannot change directory to /home/newuser: No such file or directory
+$ groups
+newuser admin admin2
+
+Command: sudo gpasswd -d USER GROUP
+Function: Superuser do to remove user from a group
+Example:
+root@ubuntu:~$ sudo gpasswd -d newuser devops
+Removing user newuser from group devops
+root@ubuntu:~$ su - newuser
+su: warning: cannot change directory to /home/newuser: No such file or directory
+$ groups
+newuser
+
+Command: chmod +/- xrw or NUMBERIC file.txt (each one will need to be specified for the user, group & others)
+Function: To add or remove (-) permissions to files. u= user, g= group, o= others.
+Example:
+root@ubuntu:~$ chmod u+x,g+r,o-w example.txt
+root@ubuntu:~$ ls -l
+total 0
+-rwxr--r-- 1 root root 0 Oct 7 20:37 example.txt
+lrwxrwxrwx 1 root root 1 Oct 5 12:29 filesystem -> /
+root@ubuntu:~$ chmod 750 example.txt
+root@ubuntu:~$ ls -l
+total 0
+-rwxr-x--- 1 root root 0 Oct 7 20:37 example.txt
+lrwxrwxrwx 1 root root 1 Oct 5 12:29 filesystem -> /
+
+Command: chmod ug=rw,o=r file.txt
+Function: An alternative way to add and remove permissions.
+Example:
+root@ubuntu:~$ chmod ug=rw,o=r example.txt
+root@ubuntu:~$ ls -l
+-rw-rw-r-- 1 root root 0  Oct 7 20:37 example.txt
+
+Command: sudo chown USERNAME file.txt
+Function: To change owner of a file to a new user.
+Example:
+root@ubuntu :~ $ sudo chown newuser example.txt
+root@ubuntu :~ $ ls -l
+-rw-r -- r -- 1 newuser root 0 Oct 12 21:26 example.txt
+
+Command: sudo chgrp GROUP file.txt
+Function: To change the group the file is in.
+Example:
+root@ubuntu:~$ sudo chgrp devops2 example.txt
+root@ubuntu:~$ ls -l
+total 0
+-rw-r--r-- 1 newuser devops2 0 Oct 12 21:26 example.txt
+
+Command: sudo chown USERNAME:GROUP file.txt
+Function: Shortcut to change both owner and group of files.
+Example:
+root@ubuntu:~$ sudo chown ubuntu:devops example.txt
+root@ubuntu:~$ ls -l
+total 0
+-rw-r--r-- 1 ubuntu devops 0 Oct 12 21:26 example.txt
+
+Command: sudo chown -R USERNAME:GROUP directory
+Function: Shortcut to change both owner and group of directory.
+Example:
+root@ubuntu:~$ sudo chown -R USERNAME:GROUP mydirectory/
+root@ubuntu:~$ ls -l
+total 4
+-rw-r--r-- 1 ubuntu devops 0 Oct 12 21:26 example.txt
+lrwxrwxrwx 1 root root 1 0ct 5 12:29 filesystem -> /
+drwxr-xr-x 2 newuser devops2 4096 Oct 12 21:39 mydirectory
