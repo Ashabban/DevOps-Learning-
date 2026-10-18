@@ -1,0 +1,181 @@
+#Viewing Files
+
+Command: cat file.txt
+Function: To read text in files
+Example:
+root@ubuntu:/home$ echo "hello world" > file.txt
+root@ubuntu:/home$ cat file.txt
+hello world
+
+Command: cat /etc/shells
+Function: To know what SHELLS you have available
+Example:
+root@ubuntu:~$ cat /etc/shells
+# /etc/shells: valid login shells
+/bin/sh
+/usr/bin/sh
+/bin/bash
+/usr/bin/bash
+/bin/rbash
+/usr/bin/rbash
+/usr/bin/dash
+/usr/bin/screen
+/usr/bin/tmux
+
+Command: grep "TEXT" > file.txt
+Function: To find specific word in files
+Example:
+root@ubuntu:/home$ grep "hello" file.txt
+hello world
+
+Command: echo "TEXT" > file.txt
+Function: To add text to files (>> to add additional text to files)
+Example:
+root@ubuntu:/home$ echo "hello world" > file.txt
+root@ubuntu:/home$ cat file.txt
+hello world
+root@ubuntu:/home$ grep "hello" file.txt
+hello world
+root@ubuntu:/home$ echo "test" >> file.txt
+root@ubuntu:/home$ cat file.txt
+hello world
+test
+
+Command: echo $
+Function: Used to show SHELL or PATH
+Example:
+root@ubuntu:~$ echo $SHELL
+/bin/bash
+root@ubuntu:~$ echo $PATH
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/bin:/
+snap/bin
+root@ubuntu:~$ PATH tells the SHELL where it needs to look in the different bina
+ries
+
+Command: vim file.txt
+Function: Text editor (if you have permission)
+Example with navigation keys:
+root@ubuntu:~$ vim example.txt
+root@ubuntu:~$ cat example.txt
+This is an example text file.
+You can write anything here.
+press 'i' to insert text.
+press 'esc' to enter command mode.
+In command mode, use 'h' to move right.
+'l' to move left
+'k' to move up.
+'j' to move down.
+To save and exit enter command mode then type ':wq!'.
+If you make change and don't want to save then you enter ':q!'.
+
+Navigation keys continued:
+'0' to move to the beginning of the line.
+'*' to move to the end of the line.
+'w' to move across word by word.
+'b' to move backwards word by word.
+':' followed by line number e.g. '4' to move to a specific line.
+'/' followed by a specific word to find it.
+'n' to find the next occurrence on the previous step.
+'N' to go back to previous occurrence.
+'dd' to delete a whole line must be next to the line.
+'D' to delete a section from the line.
+'y' to copy (yank) a line.
+'p' to paste a line.
+'u' to undo previous action.
+'ctrl r' to redo the undone change
+':syntax' to highlight commands
+':set number' to add numbers to each line
+':set nonumber' to remove numbers for each line
+':w' to save without exiting.
+
+Command: head (-n NUMBER)
+Function: To view the first ten lines of a file, use -n NUMBER to specify lines.
+Example:
+root@ubuntu:~$ touch multiline.txt
+root@ubuntu:~$ vim multiline.txt
+root@ubuntu:~$ head multiline.txt
+Line 1: This is the first line.
+Line 2: This is the second line.
+Line 3: This is the third line.
+Line 4: This is the fourth line.
+Line 5: This is the fifth line.
+Line 6: This is the sixth line.
+Line 7: This is the seventh line.
+Line 8: This is the eighth line.
+Line 9: This is the ninth line.
+Line 10: This is the tenth line.
+root@ubuntu:~$ head -n 5 multiline.txt
+Line 1: This is the first line.
+Line 2: This is the second line.
+Line 3: This is the third line.
+Line 4: This is the fourth line.
+Line 5: This is the fifth line.
+
+Command: tail (-n NUMBER)
+Function: To view the last ten lines of a file, use -n NUMBER to specify lines.
+Example:
+root@ubuntu:~$ tail multiline.txt
+Line 6: This is the sixth line.
+Line 7: This is the seventh line.
+Line 8: This is the eighth line.
+Line 9: This is the ninth line.
+Line 10: This is the tenth line.
+Line 11: This is the eleventh line.
+Line 12: This is the twelfth line.
+Line 13: This is the thirteenth line.
+Line 14: This is the fourteenth line.
+Line 15: This is the fifteenth line.
+root@ubuntu:~$ tail -n 5 multiline.txt
+Line 11: This is the eleventh line.
+Line 12: This is the twelfth line.
+Line 13: This is the thirteenth line.
+Line 14: This is the fourteenth line.
+Line 15: This is the fifteenth line.
+
+Command: head -n 10 file.txt | tail -n 5
+Function: To view the a specific portion of lines in a file.
+Example:
+root@ubuntu:~$ head -n 10 multiline.txt | tail -n 5
+Line 6: This is the sixth line.
+Line 7: This is the seventh line.
+Line 8: This is the eighth line.
+Line 9: This is the ninth line.
+Line 10: This is the tenth line.
+
+Command: vim .zshrc or vim .bashrc (depending on shell used)
+Function: To permanently create alias in shell (source .zshrc or .bashrc to save)
+Example:
+# plugins, and themes. Aliases can be placed here, though Oh My
+Zsh
+# users are encouraged to define aliases within a top-level fil
+e in
+# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
+# - $ZSH_CUSTOM/aliases.zsh
+# - $ZSH_CUSTOM/macos.zsh
+# For a full list of active aliases, run 'alias'
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# To customize prompt, run `p10k configure' or edit ~/.p10k.zsh
+.
+[[ !- f ~/.p10k.zsh ]] | | source ~/.p10k.zsh
+export MY_VAR="Hello World
+
+root@ubuntu:~$ export MY_VAR="hello world"
+root@ubuntu:~$ echo $MY_VAR
+hello world
+root@ubuntu:~$ vim .zshrc
+root@ubuntu:~$ source .zshrc
+root@ubuntu:~$ echo $MY_VAR
+Hello World
+
+Command: printenv
+Function: To view environmental variables
+Example:
+root@ubuntu:~$ printenv
+SHELL=/bin/bash
+PWD=/root
+LOGNAME=root
+HOME=/root
