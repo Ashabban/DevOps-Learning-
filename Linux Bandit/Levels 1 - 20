@@ -224,7 +224,7 @@ data9.bin: ASCII text
 bandit12@bandit:/tmp/ahmed$ cat data9.bin
 The password is qQYQiHOBPR8zR61qxYqX45quvihF2uzk
 
-*This level used the following commands xxd -r (reverse hex dump), file to identify file properties, mv (to get the right file extension e.g. gz, tar, bz2), gunzip/ bunzip2 to compress files and tar -xf to extract file.
+*This level used the following commands xxd -r (reverse hex dump), file to identify file properties, mv (to get the right file extension e.g. gz, tar, bz2), gunzip/ bunzip2 to decompress files and tar -xf to extract file.
 
 Level 13
 ssh bandit13@bandit.labs.overthewire.org -p 2220
