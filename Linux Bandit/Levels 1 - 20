@@ -1,0 +1,391 @@
+Linux Bandit Game
+
+Level 0:
+ssh bandit0@bandit.labs.overthewire.org -p 2220
+The password for the next level is stored in a file called readme located in the home directory. Use this password to log into bandit1 using SSH. Whenever you find a password for a level, use SSH (on port 2220) to log into that level and continue the game.
+
+bandit0@bandit:~$ ls
+readme
+bandit0@bandit :~ $ cat readme
+Congratulations on your first steps into the bandit game !!
+Please make sure you have read the rules at https://overthewire.org/rules/
+If you are following a course, workshop, walkthrough or other educational activity,
+please inform the instructor about the rules as well and encourage them to
+contribute to the OverTheWire community so we can keep these games free!
+
+The password you are looking for is: 6y2kwnwK6grgvwvpvLaa2T1cpFEKOhNR
+
+Level 1:
+ssh bandit1@bandit.labs.overthewire.org -p 2220
+The password for the next level is stored in a file called - located in the home directory
+
+bandit1@bandit :~ $ ls
+-
+bandit1@bandit :~ $ cat -
+bandit1@bandit :~ $ cat ./-
+PK8fYLZg2hnHSz83p1BL1iEPKdD3OToB
+
+*cat ./- makes you read hidden files.
+
+Level 2:
+ssh bandit2@bandit.labs.overthewire.org -p 2220
+The password for the next level is stored in a file called --spaces in this filename-- located in the home directory
+
+bandit2@bandit:~$ ls
+spaces in this filename
+bandit2@bandit:~$ cat 'spaces in this filename'
+7ZZ2LFrykP2zEyvBl4m3clcL7tGYJPME
+
+Level 3:
+ssh bandit3@bandit.labs.overthewire.org -p 2220
+The password for the next level is stored in a hidden file in the inhere directory.
+
+bandit3@bandit:~ cd inhere
+bandit3@bandit:~/inhere$ ls .la
+bandit3@bandit:~/inhere$ cat ...Hiding-From-You
+xzTXq1rDJQVVAzdv5cHq1TQytTWufAMq
+
+Level 4:
+ssh bandit4@bandit.labs.overthewire.org -p 2220
+The password for the next level is stored in the only human-readable file in the inhere directory. Tip: if your terminal is messed up, try the “reset” command.
+
+bandit4@bandit:~/inhere$ ls
+-file00 -file02 -file04 -file06 -file08
+-file01 -file03 -file05 -file07 -file09
+bandit4@bandit:~/inhere$ file ./*
+./-file00: data
+./-file01: data
+./-file02: data
+./-file03: data
+./-file04: data
+./-file05: data
+./-file06: data
+./-file07: ASCII text
+./-file08: data
+./-file09: data
+bandit4@bandit:~/inhere$ cat ./-file07
+6C7h9GD8M6ai5nr7wo1RonrzFjj9yIrG
+
+*file ./* to find human readable files
+
+level 5:
+ssh bandit5@bandit.labs.overthewire.org -p 2220
+The password for the next level is stored in a file somewhere under the inhere directory and has all of the following properties:
+
+human-readable
+1033 bytes in size
+not executable
+
+bandit5@bandit:~/inhere$ find . -size 1033c
+./maybehere07/.file2
+bandit5@bandit:~/inhere$ cat ./maybehere07/.file2
+pXa26xhMWaC2SvDotA4r9EgZkulOeSBW
+
+Level 6:
+ssh bandit6@bandit.labs.overthewire.org -p 2220
+The password for the next level is stored somewhere on the server and has all of the following properties:
+
+owned by user bandit7
+owned by group bandit6
+33 bytes in size
+
+bandit6@bandit:/$ find / -type f -user bandit7 -group bandit6 -size 33c
+/var/lib/dpkg/info/bandit7.password
+bandit6@bandit:/$ cat /var/lib/dpkg/info/bandit7.password
+Bmnnvf82Kz01fxgAI2d1zYbr1u9pr3E3
+
+*2>/dev/null add this command to override stderr
+
+Level 7:
+ssh bandit7@bandit.labs.overthewire.org -p 2220
+The password for the next level is stored in the file data.txt next to the word millionth
+
+bandit7@bandit:~$ cat data.txt | grep "millionth"
+millionth VR1ljMayciFxbnUokuQmJFw6QC9VKtub
+
+Level 8:
+ssh bandit8@bandit.labs.overthewire.org -p 2220
+The password for the next level is stored in the file data.txt and is the only line of text that occurs only once
+
+bandit8@bandit:~$ sort data.txt | uniq -u
+EjmOSvuAu7sGAHqHVcBDPirRe9T03kxl
+
+level 9:
+ssh bandit9@bandit.labs.overthewire.org -p 2220
+The password for the next level is stored in the file data.txt in one of the few human-readable strings, preceded by several ‘=’ characters.
+
+bandit9@bandit:~$ strings data.txt | grep "="
+B0s2khmbT9u0geKuOoVGW3JZKhndE3BG
+
+Level 10:
+ssh bandit10@bandit.labs.overthewire.org -p 2220
+The password for the next level is stored in the file data.txt, which contains base64 encoded data
+
+bandit10@bandit:~$ base64 -d data.txt
+The password is pYfOY6HwUsDj5rL9UvyhU7MCmv8vN5Ro
+
+*base64 -d (-d decodes the data)
+
+Level 11:
+ssh bandit11@bandit.labs.overthewire.org -p 2220
+The password for the next level is stored in the file data.txt, where all lowercase (a-z) and uppercase (A-Z) letters have been rotated by 13 positions
+
+bandit11@bandit:~$ ls
+data.txt
+bandit11@bandit:~$ cat data.txt
+Gur cnffjbeq vf TEBbmJCB8DlA0zTewHxVQ0JPLxMvDkeA
+bandit11@bandit:~$ man tr
+bandit11@bandit:~$ cat data.txt | tr abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM
+The password is GROozWPO8QyN0mGrjUkID0WCYkZiQxrN
+
+Level 12:
+ssh bandit12@bandit.labs.overthewire.org -p 2220
+The password for the next level is stored in the file data.txt, which is a hexdump of a file that has been repeatedly compressed. For this level it may be useful to create a directory under /tmp in which you can work. Use mkdir with a hard to guess directory name. Or better, use the command “mktemp -d”. Then copy the datafile using cp, and rename it using mv (read the manpages!)
+
+bandit12@bandit:~$ cd /tmp
+bandit12@bandit:/tmp$ mkdir level12
+bandit12@bandit:/tmp$ ls
+ls: cannot open directory '.': Permission denied
+bandit12@bandit:/tmp$ cd level12
+bandit12@bandit:/tmp/level12$ cd
+bandit12@bandit:~$ cp data.txt /tmp/level12
+bandit12@bandit:~$ cd /tmp/level12
+bandit12@bandit:/tmp/level12$ ls
+data.txt
+bandit12@bandit:/tmp/level12$ xxd -r data.txt data2.txt
+bandit12@bandit:/tmp/level12$ ls
+data.txt  data2.txt
+bandit12@bandit:/tmp/level12$ file data2.txt
+data2.txt: gzip compressed data, was "data2.bin", last modified: Sat Sep 26 21:52:56 2026, max compression, from Unix, original size modulo 2^32 582
+bandit12@bandit:/tmp/ahmed$ mv data2.txt data2.bin.gz
+bandit12@bandit:/tmp/ahmed$ ls
+data.txt  data2.bin.gz
+bandit12@bandit:/tmp/ahmed$ gunzip data2.bin.gz
+bandit12@bandit:/tmp/ahmed$ ls
+data.txt  data2.bin
+bandit12@bandit:/tmp/ahmed$ file data2.bin
+data2.bin: bzip2 compressed data, block size = 900k
+bandit12@bandit:/tmp/ahmed$ mv data2.bin data2.bin.bz2
+bandit12@bandit:/tmp/ahmed$ ls
+data.txt  data2.bin.bz2
+bandit12@bandit:/tmp/ahmed$ bunzip2 data2.bin.bz2
+bandit12@bandit:/tmp/ahmed$ ls
+data.txt  data2.bin
+bandit12@bandit:/tmp/ahmed$ file data2.bin
+data2.bin: gzip compressed data, was "data4.bin", last modified: Sat Sep 26 21:52:56 2026, max compression, from Unix, original size modulo 2^32 20480
+bandit12@bandit:/tmp/ahmed$ mv data2.bin data4.bin.gz
+bandit12@bandit:/tmp/ahmed$ ls
+data.txt  data4.bin.gz
+bandit12@bandit:/tmp/ahmed$ gunzip data4.bin.gz
+bandit12@bandit:/tmp/ahmed$ ls
+data.txt  data4.bin
+bandit12@bandit:/tmp/ahmed$ file data4.bin
+data4.bin: POSIX tar archive (GNU)
+bandit12@bandit:/tmp/ahmed$ mv data4.bin data5.bin.tar
+bandit12@bandit:/tmp/ahmed$ ls
+data.txt  data5.bin.tar
+bandit12@bandit:/tmp/ahmed$ tar -xf data5.bin.tar
+bandit12@bandit:/tmp/ahmed$ ls
+data.txt  data5.bin  data5.bin.tar
+bandit12@bandit:/tmp/ahmed$ file data5.bin
+data5.bin: POSIX tar archive (GNU)
+bandit12@bandit:/tmp/ahmed$ mv data5.bin data5.bin.tar
+bandit12@bandit:/tmp/ahmed$ ls
+data.txt  data5.bin.tar
+bandit12@bandit:/tmp/ahmed$ tar -xf data5.bin.tar
+bandit12@bandit:/tmp/ahmed$ ls
+data.txt  data5.bin.tar  data6.bin
+bandit12@bandit:/tmp/ahmed$ file data6.bin
+data6.bin: bzip2 compressed data, block size = 900k
+bandit12@bandit:/tmp/ahmed$ mv data6.bin data7.bin.bz2
+bandit12@bandit:/tmp/ahmed$ ls
+data.txt  data5.bin.tar  data7.bin.bz2
+bandit12@bandit:/tmp/ahmed$ bunzip2 data7.bin.bz2
+bandit12@bandit:/tmp/ahmed$ ls
+data.txt  data5.bin.tar  data7.bin
+bandit12@bandit:/tmp/ahmed$ file data7.bin
+data7.bin: POSIX tar archive (GNU)
+bandit12@bandit:/tmp/ahmed$ mv data7.bin data8.bin.tar
+bandit12@bandit:/tmp/ahmed$ ls
+data.txt  data5.bin.tar  data8.bin.tar
+bandit12@bandit:/tmp/ahmed$ tar -xf data8.bin.tar
+bandit12@bandit:/tmp/ahmed$ ls
+data.txt  data5.bin.tar  data8.bin  data8.bin.tar
+bandit12@bandit:/tmp/ahmed$ file data8.bin
+data8.bin: gzip compressed data, was "data9.bin", last modified: Sat Sep 26 21:52:56 2026, max compression, from Unix, original size modulo 2^32 49
+bandit12@bandit:/tmp/ahmed$ mv data8.bin data9.bin.gz
+bandit12@bandit:/tmp/ahmed$ ls
+data.txt  data5.bin.tar  data8.bin.tar  data9.bin.gz
+bandit12@bandit:/tmp/ahmed$ gunzip data9.bin.gz
+bandit12@bandit:/tmp/ahmed$ ls
+data.txt  data5.bin.tar  data8.bin.tar  data9.bin
+bandit12@bandit:/tmp/ahmed$ file data9.bin
+data9.bin: ASCII text
+bandit12@bandit:/tmp/ahmed$ cat data9.bin
+The password is qQYQiHOBPR8zR61qxYqX45quvihF2uzk
+
+*This level used the following commands xxd -r (reverse hex dump), file to identify file properties, mv (to get the right file extension e.g. gz, tar, bz2), gunzip/ bunzip2 to compress files and tar -xf to extract file.
+
+Level 13
+ssh bandit13@bandit.labs.overthewire.org -p 2220
+The password for the next level is stored in /etc/bandit_pass/bandit14 and can only be read by user bandit14. For this level, you don’t get the next password, but you get a private SSH key that can be used to log into the next level. Look at the commands that logged you into previous bandit levels, and find out how to use the key for this level.
+If you need help with this level: a hint file can be found in the home directory.
+Make sure to read the error messages as they are informative.
+
+bandit13@bandit:~$ ls
+HINT  sshkey.private
+bandit13@bandit:~$ cat sshkey.private
+-----BEGIN OPENSSH PRIVATE KEY----- (continued...)
+bandit13@bandit:~$ exit
+AHMED% echo "-----BEGIN OPENSSH PRIVATE KEY-----..." > private.key
+AHMED% ls
+file.text  file.txt  private.key
+MANAL% ls -l
+total 8
+-rw-r--r-- 1 ahmed ahmed   12 Oct  3 22:15 file.text
+-rw-r--r-- 1 ahmed ahmed    0 Oct  3 22:01 file.txt
+-rw-r--r-- 1 ahmed ahmed 2602 Oct 22 19:20 private.key
+AHMED% chmod 700 private.key
+AHMED% ls -l
+total 8
+-rw-r--r-- 1 ahmed ahmed  12 Oct  3 22:15 file.text
+-rw-r--r-- 1 ahmed ahmed    0 Oct  3 22:01 file.txt
+-rwx------ 1 ahmed ahmed 2602 Oct 22 19:20 private.key
+AHMED% ssh bandit14@bandit.labs.overthewire.org -p 2220 -i private.key
+bandit14@bandit:~$ cat /etc/bandit_pass/bandit14
+aaWecNkG4FhxJQxz07uiwzVP6bJiYS65
+
+level 14
+ssh bandit14@bandit.labs.overthewire.org -p 2220 -i private.key
+The password for the next level can be retrieved by submitting the password of the current level to port 30000 on localhost.
+
+bandit14@bandit:~$ nc localhost 30000
+aaWecNkG4FhxJQxz07uiwzVP6bJiYS65
+Correct!
+pbLYuZtTg4MgaqfJx8jbA9gKKGqM68A7
+
+*localhost IP address 127.0.0.1
+
+level 15
+ssh bandit15@bandit.labs.overthewire.org -p 2220
+The password for the next level can be retrieved by submitting the password of the current level to port 30001 on localhost using SSL/TLS encryption.
+
+Helpful note: Getting “DONE”, “RENEGOTIATING” or “KEYUPDATE”? Read the “CONNECTED COMMANDS” section in the manpage.
+
+bandit15@bandit:~$ openssl s_client -connect localhost:30001
+Connecting to 127.0.0.1
+CONNECTED(00000003)
+---
+read R BLOCK
+pbLYuZtTg4MgaqfJx8jbA9gKKGqM68A7
+Correct!
+kS0Hf0u5HiXFwKMKFqXvPdOTNGGa0X8V
+
+closed
+
+*SSL - Secure Socket Layer, TLS - Transport Layer Security, openssl command.
+
+level 16
+ssh bandit16@bandit.labs.overthewire.org -p 2220
+The credentials for the next level can be retrieved by submitting the password of the current level to a port on localhost in the range 31000 to 32000. First find out which of these ports have a server listening on them. Then find out which of those speak SSL/TLS and which don’t. There is only 1 server that will give the next credentials, the others will simply send back to you whatever you send to it.
+
+Helpful note: Getting “DONE”, “RENEGOTIATING” or “KEYUPDATE”? Read the “CONNECTED COMMANDS” section in the manpage.
+
+bandit16@bandit:~$ man nmap
+bandit16@bandit:~$ nmap -p 31000-32000 127.0.0.1
+Starting Nmap 7.98 ( https://nmap.org ) at 2026-10-22 18:48 +0000
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.000091s latency).
+Not shown: 996 closed tcp ports (conn-refused)
+PORT      STATE SERVICE
+31046/tcp open  unknown
+31518/tcp open  unknown
+31691/tcp open  unknown
+31790/tcp open  unknown
+31960/tcp open  unknown
+
+Nmap done: 1 IP address (1 host up) scanned in 0.06 seconds
+bandit16@bandit:~$ nmap -p 21046,31518,31691,31790,31960 -A localhost
+31790/tcp open   ssl/unknown
+bandit16@bandit:~$ openssl s_client -connect localhost:31790
+kS0Hf0u5HiXFwKMKFqXvPdOTNGGa0X8V
+Correct!
+-----BEGIN OPENSSH PRIVATE KEY-----
+AHMED% echo "-----BEGIN OPENSSH PRIVATE KEY-----..." > private.key2
+AHMED% ls
+file.text  file.txt  private.key  private.key2
+AHMED% ssh bandit17@bandit.labs.overthewire.org -p 2220 -i private.key2
+
+*Port scanner - A way to find out which port is open for connection (nmap command).
+
+Level 17
+ssh bandit17@bandit.labs.overthewire.org -p 2220 -i private.key2
+There are 2 files in the homedirectory: passwords.old and passwords.new. The password for the next level is in passwords.new and is the only line that has been changed between passwords.old and passwords.new
+
+NOTE: if you have solved this level and see ‘Byebye!’ when trying to log into bandit18, this is related to the next level, bandit19
+
+bandit17@bandit:~$ diff passwords.old passwords.new
+42c42
+< z7vPcsOPfFxnloUxixqYv4aWHUrx49K6
+---
+> OQxXZjELndr90zuhOTDYBEomI0SZITXI
+bandit17@bandit:~$ ls
+passwords.new  passwords.old
+
+OQxXZjELndr90zuhOTDYBEomI0SZITXI
+*diff - compare files line by line
+
+Level 18
+ssh bandit18@bandit.labs.overthewire.org -p 2220
+The password for the next level is stored in a file readme in the homedirectory. Unfortunately, someone has modified .bashrc to log you out when you log in with SSH.
+
+AHMED% ssh bandit18@bandit.labs.overthewire.org -p 2220 cat readme
+bandit18@bandit.labs.overthewire.org's password:
+KpsOfPkcP7i1FlIExk2QEjyt6dw8dxZI
+
+*Add command at end of SSH command to avoid being blocked by script on .bashrc
+
+Level 19
+ssh bandit19@bandit.labs.overthewire.org -p 2220
+To gain access to the next level, you should use the setuid binary in the homedirectory. Execute it without arguments to find out how to use it. The password for this level can be found in the usual place (/etc/bandit_pass), after you have used the setuid binary.
+
+bandit19@bandit:~$ ls
+bandit20-do
+bandit19@bandit:~$ file bandit20-do
+bandit20-do: setuid ELF 32-bit LSB executable, Intel i386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, BuildID[sha1]=263f71465a75a599f568ae40f1caca2a9e937892, for GNU/Linux 3.2.0, not stripped
+bandit19@bandit:~$ ls -l bandit20-do
+-rwsr-x--- 1 bandit20 bandit19 14880 Sep 26 21:53 bandit20-do
+bandit19@bandit:~$ ./bandit20-do
+Run a command as another user.
+  Example: ./bandit20-do whoami
+bandit19@bandit:~$ ./bandit20-do whoami
+bandit20
+bandit19@bandit:~$ ./bandit20-do cat /etc/bandit_pass/bandit20
+4pIjcunZ0fK2vmp3IwfG8Vf7VhxD6pOA
+
+level 20
+ssh bandit20@bandit.labs.overthewire.org -p 2220
+There is a setuid binary in the homedirectory that does the following: it makes a connection to localhost on the port you specify as a commandline argument. It then reads a line of text from the connection and compares it to the password in the previous level (bandit20). If the password is correct, it will transmit the password for the next level (bandit21).
+
+NOTE: Try connecting to your own network daemon to see if it works as you think
+
+REQUIRES TWO TERMINALS
+TERMINAL 1:
+bandit20@bandit:~$ ls
+suconnect
+bandit20@bandit:~$ man nc
+bandit20@bandit:~$ ./suconnect
+Usage: ./suconnect <portnumber>
+This program will connect to the given port on localhost using TCP. If it receives the correct password from the other side, the next password is transmitted back.
+bandit20@bandit:~$ ./suconnect 9999
+Read: 4pIjcunZ0fK2vmp3IwfG8Vf7VhxD6pOA
+Password matches, sending next password
+
+TERMINAL 2:
+bandit20@bandit:~$ nc -lvp 9999
+Listening on 0.0.0.0 9999
+Connection received on localhost 33930
+4pIjcunZ0fK2vmp3IwfG8Vf7VhxD6pOA
+bW9kBv5WC3P4yoDyf12LSdGuNz5ka6hY
+
+
