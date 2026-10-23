@@ -245,3 +245,7 @@ total 4
 -rw-r--r-- 1 ubuntu devops 0 Oct 12 21:26 example.txt
 lrwxrwxrwx 1 root root 1 0ct 5 12:29 filesystem -> /
 drwxr-xr-x 2 newuser devops2 4096 Oct 12 21:39 mydirectory
+
+Command: kill <PID>
+Function: To kill processes. 
+
