@@ -1,5 +1,25 @@
 #Navigation
 
+Linux File System:
+/usr - Unix System Resources
+/bin - Essential command Binaries
+/srv - Site-Specific Data Served by this system
+/dev - Device files
+/boot - System Boot Loader files
+/etc - Host-specific system-wide configuration files
+/tmp - Temporary files
+/lib - shared library modules
+/run - Run-time program Data
+/sys - Virtual directory providing info about this system
+/proc - Interface to kernel data structures
+/mnt - Temporary mounted file systems
+/opt - Add-on Application Software Packages
+/home - User home directory
+/root - Home Directory for root user
+/var - File that is expected to continuously change
+/sbin - System Binaries
+/media - media file such as CD-ROM
+
 Command: man command
 Function: Manual page for selected command
 Example:
