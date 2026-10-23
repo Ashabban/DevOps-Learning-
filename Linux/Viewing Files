@@ -179,3 +179,66 @@ SHELL=/bin/bash
 PWD=/root
 LOGNAME=root
 HOME=/root
+
+Command: printenv
+Function: To view environmental variables
+Example:
+root@ubuntu:~$ printenv
+SHELL=/bin/bash
+PWD=/root
+LOGNAME=root
+HOME=/root
+
+Command: less filename
+Function: To view the beginning of a long file
+example:
+AHMED% less bigfile.
+Linux Bandit Game
+
+Level 0:
+ssh bandit0@bandit.labs.overthewire.org -p 2220
+The password for the next level is stored in a file called readme located in the home directory. Use this password to log into bandit1 using SSH. Whenever you find a password for a level, use SSH (on port 2220) to log into that level and continue the game.
+
+bandit0@bandit:~$ ls
+readme
+bandit0@bandit :~ $ cat readme
+Congratulations on your first steps into the bandit game ls
+Please make sure you have read the rules at https://overthewire.org/rules/
+If you are following a course, workshop, walkthrough or other educational activity,
+please inform the instructor about the rules as well and encourage them to
+contribute to the OverTheWire community so we can keep these games free!
+
+The password you are looking for is: 6y2kwnwK6grgvwvpvLaa2T1cpFEKOhNR
+
+Level 1:
+ssh bandit1@bandit.labs.overthewire.org -p 2220
+The password for the next level is stored in a file called - located in the home directory
+
+bandit1@bandit :~ $ ls
+-
+bandit1@bandit :~ $ cat -
+bigfile.
+
+Command: ps aux
+Function: To see every process on the system
+example:
+AHMED% ps aux
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.4  24580 15568 ?        Ss   19:39   0:00 /sbin/init
+root           2  0.0  0.0   3804  2508 hvc0     Sl+  19:39   0:00 /init
+root           3  0.0  0.0   3664  2136 hvc0     S+   19:39   0:00 init-watcher
+root           7  0.0  0.0   3804  2268 hvc0     Sl+  19:39   0:00 plan9 --control-socket 7 --log-level 4 --se
+root          47  0.0  0.4  50676 19064 ?        S<s  19:39   0:00 
+systemd+      79  0.0  0.3  22416 14568 ?        Ss   19:39   0:00 
+
+Command: awk '{print $1} 
+Function: To search through text files by column
+example:
+admin@i-044c14e624ac60ba5 :~ $ awk '{print $1}' /home/admin/access.log | sort | uniq -c | sort -nr | head -1
+482 66.249.73.135
+
+Command: sed
+Function: stream editor for filtering and transforming text
+Example: 
+sed 's/old/new/g' file.txt  # replace text
+
