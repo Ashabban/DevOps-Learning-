@@ -106,3 +106,12 @@ filesystem@ greet.sh*
 root@ubuntu:~$ alias hello='echo "Hello World"'
 root@ubuntu:~$ hello
 Hello World
+
+Piping Commands: Piping in Linux connects the standard output (STDOUT) of one command directly into the standard input (STDIN) of another command using the vertical bar symbol.
+Example:
+root@ubuntu:~$ head -n 10 multiline.txt | tail -n 5
+Line 6: This is the sixth line.
+Line 7: This is the seventh line.
+Line 8: This is the eighth line.
+Line 9: This is the ninth line.
+Line 10: This is the tenth line.
