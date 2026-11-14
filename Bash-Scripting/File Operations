@@ -1,0 +1,11 @@
+#!/bin/bash 
+
+mkdir demo_bash 
+cd demo_bash
+
+touch demo.txt
+echo "This file was created by a Bash script on 14/11/2026" > demo.txt
+
+cd demo_bash
+cat demo.txt
+This file was created by a Bash script on 14/11/2026
