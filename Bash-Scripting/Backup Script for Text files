@@ -1,0 +1,31 @@
+read -p "Enter source directory: " source_dir
+
+if [ ! -d "$source_dir" ]; then
+  echo "Error: directory '$source_dir' does not exist."
+  exit 1
+fi
+
+timestamp=$(date +%Y-%m-%d_%H-%M)
+backup_dir="backup_$timestamp"
+
+mkdir -p "$backup_dir"
+echo "Backup directory created: $backup_dir"
+
+echo "Copying .txt files..."
+count=0
+
+for file in "$source_dir"/*.txt; do
+  if [ ! -f "$file" ]; then
+    continue
+  fi
+
+  cp "$file" "$backup_dir/"
+  count=$(( count + 1 ))
+done
+
+echo "Backup complete! Files backed up: $count"
+
+Enter source directory: /c/Users/ahmed
+Backup directory created: backup_2026-11-14_14-02
+Copying .txt files...
+Backup complete! Files backed up: 6
